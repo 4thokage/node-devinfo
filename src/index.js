@@ -25,7 +25,7 @@ fastify.register(require('fastify-cors'), {
 })
 
 // Connect to DB
-mongoose.connect('mongodb://jsr:aah1G1625sdS69@95.179.249.69:27017/devinfoDB?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err))
 
