@@ -20,20 +20,12 @@ const swagger = require('./config/swagger')
 fastify.register(require('fastify-swagger'), swagger.options)
 
 // Enasble cors
-fastify.register(require('fastify-cors'), (instance) => { (req, cb) => {
-  let corsOptions;
-  // do not include CORS headers for requests from localhost
-  if (/localhost/.test(origin)) {
-    corsOptions = { origin: false }
-  } else {
-    corsOptions = { origin: true }
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
-  }
+fastify.register(require('fastify-cors'), { 
+  // put your options here
 })
 
 // Connect to DB
-mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://jsr:aah1G1625sdS69@95.179.249.69:27017/devinfoDB?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err))
 
@@ -54,3 +46,4 @@ const start = async () => {
   }
 }
 start()
+
