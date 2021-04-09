@@ -1,4 +1,4 @@
-# A blazing fast REST APIs with Node.js, MongoDB, Fastify and Swagger.
+# A simple rest api made with nodeJS
 
 
 ## Build Setup

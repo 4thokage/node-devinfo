@@ -1,3 +1,7 @@
+
+const DB_URL = process.env.DB_URL || 'mongodb://localhost/devinfoDB';
+const APP_PORT = process.env.PORT || 50100;
+
 // Require the fastify framework and instantiate it
 const fastify = require('fastify')({
   logger: false
@@ -15,8 +19,21 @@ const swagger = require('./config/swagger')
 // Register Swagger
 fastify.register(require('fastify-swagger'), swagger.options)
 
+// Enasble cors
+fastify.register(require('fastify-cors'), (instance) => { (req, cb) => {
+  let corsOptions;
+  // do not include CORS headers for requests from localhost
+  if (/localhost/.test(origin)) {
+    corsOptions = { origin: false }
+  } else {
+    corsOptions = { origin: true }
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+  }
+})
+
 // Connect to DB
-mongoose.connect('mongodb://localhost/devinfoDB', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err))
 
@@ -28,7 +45,7 @@ routes.forEach((route, index) => {
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen(50100, '0.0.0.0')
+    await fastify.listen(APP_PORT, '0.0.0.0')
     fastify.swagger()
     fastify.log.info(`server listening on ${fastify.server.address().port}`)
   } catch (err) {
