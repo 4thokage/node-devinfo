@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rimraf '{src,test}/**/*.{js,js.map}'",
     "build": "yarn tsc",
-    "test": "yarn clean && yarn test:lint && yarn test:coverage",
+    "test": "yarn clean && yarn test:coverage",
     "test:unit": "cross-env NODE_ENV=test mocha",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha",
     "tsc": "tsc --project tsconfig.json",
