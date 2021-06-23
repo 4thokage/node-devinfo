@@ -1,23 +1,24 @@
 import {Controller, Get} from "@tsed/common";
-import {Summary, Status} from "@tsed/schema";
+import {Status, Summary} from "@tsed/schema";
 import {Experience} from "../models/Experience";
 import {ExperienceService} from "../service/ExperienceService";
 
 @Controller({
-  path: "/experience",
+    path: "/experience",
 })
 export class ExperienceController {
-  constructor(private experienceService: ExperienceService) {
+    constructor(private experienceService: ExperienceService) {
 
-  }
-  /**
-   *
-   * @returns {Promise<Experience[]>}
-   */
-  @Get("/")
-  @Summary("Return every developer experience")
-  @Status(200, {description: "Success", type: Experience, collectionType: Array})
-  async getAllExperience(): Promise<Experience[]> {
-    return this.experienceService.query();
-  }
+    }
+
+    /**
+     *
+     * @returns {Promise<Experience[]>}
+     */
+    @Get("/")
+    @Summary("Return every developer experience")
+    @Status(200, {description: "Success", type: Experience, collectionType: Array})
+    async getAllExperience(): Promise<Experience[]> {
+        return this.experienceService.query();
+    }
 }

@@ -1,5 +1,4 @@
-import { PlatformAcceptMimesMiddleware} from "@tsed/common";
-import {PlatformApplication} from "@tsed/common";
+import {PlatformAcceptMimesMiddleware, PlatformApplication} from "@tsed/common";
 import {Configuration, Inject} from "@tsed/di";
 import "@tsed/mongoose";
 import "@tsed/platform-express";
@@ -8,6 +7,7 @@ import * as bodyParser from "body-parser";
 import * as compress from "compression";
 import * as cookieParser from "cookie-parser";
 import * as methodOverride from "method-override";
+import * as cors from "cors";
 
 @Configuration({
     rootDir: __dirname,
@@ -35,6 +35,7 @@ export class Server {
     $beforeRoutesInit(): void | Promise<any> {
         this.app
             .use(PlatformAcceptMimesMiddleware)
+            .use(cors())
             .use(cookieParser())
             .use(compress({}))
             .use(methodOverride())
