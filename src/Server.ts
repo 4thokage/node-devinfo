@@ -16,11 +16,7 @@ import * as cors from "cors";
     httpsPort: false,
     passport: {},
     mongoose: {
-        url: process.env.DB_URL || "mongodb://127.0.0.1:27017/devinfoDB",
-        connectionOptions: {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }
+        url: process.env.DB_URL || "mongodb://127.0.0.1:27017/devinfoDB"
     },
     swagger: [{
         path: "/docs",
