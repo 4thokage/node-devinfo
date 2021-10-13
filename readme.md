@@ -7,7 +7,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload
+# serve
 npm start
 ```
 
